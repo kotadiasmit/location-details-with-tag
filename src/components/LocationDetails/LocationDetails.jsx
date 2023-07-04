@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavbarComp from "../Navbar/Navbar";
-import "./LocationDetails.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown/Dropdown";
+import { addNewLocation } from "../Store/reducer";
+import "./LocationDetails.scss";
 
 const countries = [
   {
@@ -52,6 +53,7 @@ const LocationDetails = () => {
   const [selectedState, setSelectedState] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onLocationChanged = (event) => {
     const { value } = event.target;
@@ -86,20 +88,30 @@ const LocationDetails = () => {
     (state) => state.name === selectedState
   )?.districts;
 
+  const locationDetailsArray = useSelector(
+    (state) => state.locations.locationDetails
+  );
+
+  const locationDetailsArrayLength = locationDetailsArray.length;
+  console.log(locationDetailsArray);
+
   const onClickSubmit = (event) => {
     event.preventDefault();
     const trimmedLocation = location.trim();
     const trimmedDescription = description.trim();
     let addLocationDetails = {
-      id: 1,
+      id: locationDetailsArrayLength ? locationDetailsArrayLength : 0,
       location: trimmedLocation,
       description: trimmedDescription,
+      country: selectedCountry,
+      state: selectedState,
+      city: selectedDistrict,
+      tag: "",
     };
-    // dispatch(submitUser(addNewUser));
-    // dispatch(removeChats());
+    dispatch(addNewLocation(addLocationDetails));
     setLocation("");
     setDescription("");
-    navigate("/userChats");
+    navigate("/locationPage");
   };
 
   return (
@@ -128,7 +140,7 @@ const LocationDetails = () => {
           <textarea
             className="input"
             rows={3}
-            maxLength="10"
+            maxLength="80"
             placeholder="Description"
             value={description}
             onChange={onDescriptionChanged}

@@ -1,0 +1,58 @@
+.col-checkbox-width {
+  width: 3vw;
+  padding-bottom: 15px !important;
+}
+.col-srno-width {
+  width: 8vw;
+  padding-bottom: 15px !important;
+}
+.col-location-width {
+  width: 15vw;
+  padding-bottom: 15px !important;
+}
+.col-description-width {
+  width: 25vw;
+  padding-bottom: 15px !important;
+}
+.col-country-width {
+  width: 10vw;
+  padding-bottom: 15px !important;
+}
+.col-state-width {
+  width: 10vw;
+  padding-bottom: 15px !important;
+}
+.col-city-width {
+  width: 13vw;
+  padding-bottom: 15px !important;
+}
+.col-tags-width {
+  width: 16vw;
+  display: flex;
+  align-items: center;
+}
+.row-text {
+  text-transform: capitalize;
+}
+.close-btn {
+  cursor: pointer;
+  margin-left: 15px;
+}
+.css-b62m3t-container {
+  margin-left: 20px;
+  width: 100%;
+  padding: 0px;
+}
+.css-13cymwt-control {
+  height: 25px !important;
+}
+.css-art2ul-ValueContainer2 {
+  margin-left: 5px;
+  width: 100%;
+  padding: 0px;
+}
+/* react-select__value-container react-select__value-container--has-value css-art2ul-ValueContainer2 */
+/* .css-art2ul-ValueContainer2 {
+  display: none !important;
+} */
+/* react-select__single-value css-1dimb5e-singleValue */
