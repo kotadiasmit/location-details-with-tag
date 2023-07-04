@@ -21,7 +21,6 @@ const LocationPage = () => {
   );
 
   const [selectedOption, setSelectedOption] = useState("select tag");
-  console.log(locationDetailsArray);
   const sanitizedOptions = options.filter((o) => o?.value !== "select tag");
 
   const [selectedRowIds, setSelectedRowIds] = useState([]);
@@ -30,9 +29,7 @@ const LocationPage = () => {
       options.push({ value: opt.value, label: opt.label });
       setSelectedOption(opt.value);
     }
-    console.log(event);
     const { outerText } = event.target;
-    console.log(outerText);
     outerText && setSelectedOption(outerText);
   };
 
@@ -49,12 +46,10 @@ const LocationPage = () => {
     }
   };
 
-  console.log(selectedRowIds);
   const noDataHeading =
     locationDetailsArray?.length === 0 ? "No Data Found." : "";
 
   useEffect(() => {
-    console.log(selectedOption, selectedRowIds);
     if (selectedRowIds?.length && selectedOption !== "select tag") {
       dispatch(addTag({ selectedOption, selectedRowIds }));
       dispatch(isRowChecked(false));
@@ -66,7 +61,7 @@ const LocationPage = () => {
   return (
     <>
       <NavbarComp />
-      <div className="table-responsive location-table-container mt-3 mb-4">
+      <div className="table-responsive location-table-container pt-3 pb-4">
         <Table className="table" striped bordered hover>
           <thead>
             <tr>
@@ -92,7 +87,6 @@ const LocationPage = () => {
               <th scope="col" className="col-tags-width">
                 Tags
                 <Creatable
-                  disabled
                   placeholder={"select tag"}
                   value={selectedOption}
                   options={sanitizedOptions}

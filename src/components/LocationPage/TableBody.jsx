@@ -15,7 +15,12 @@ const TableBody = ({ locationDetails, selectedRows }) => {
   return (
     <tr>
       <td>
-        <input type="checkbox" onChange={selectedRow} checked={checked} />
+        <input
+          type="checkbox"
+          onChange={selectedRow}
+          checked={checked}
+          className="check-box"
+        />
       </td>
       <th scope="row">{id + 1}</th>
       <td className="row-text">{location}</td>

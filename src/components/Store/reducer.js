@@ -41,16 +41,13 @@ const locationReducer = createSlice({
       state.locationDetails.push(action.payload);
     },
     addTag(state, action) {
-      console.log(action);
       const { selectedOption, selectedRowIds } = action.payload;
       selectedRowIds.forEach((id) => {
-        console.log(id);
         state.locationDetails[id].tag = selectedOption;
       });
     },
     isRowChecked(state, action) {
       const { id, checked } = action.payload;
-      console.log(checked, id);
       if (id !== undefined) {
         state.locationDetails[id].checked = checked;
       } else {
@@ -58,7 +55,6 @@ const locationReducer = createSlice({
       }
     },
     removeTag(state, action) {
-      console.log(action);
       state.locationDetails[action.payload].tag = "";
     },
   },

@@ -93,7 +93,6 @@ const LocationDetails = () => {
   );
 
   const locationDetailsArrayLength = locationDetailsArray.length;
-  console.log(locationDetailsArray);
 
   const onClickSubmit = (event) => {
     event.preventDefault();
