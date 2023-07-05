@@ -85,9 +85,8 @@ const LocationPage = () => {
                 City
               </th>
               <th scope="col" className="col-tags-width">
-                Tags
                 <Creatable
-                  placeholder={"select tag"}
+                  placeholder={"Tag"}
                   value={selectedOption}
                   options={sanitizedOptions}
                   onChange={(opt) => onSelectedOption(opt, event)}

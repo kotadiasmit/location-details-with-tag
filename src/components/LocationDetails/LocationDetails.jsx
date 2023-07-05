@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import NavbarComp from "../Navbar/Navbar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Dropdown from "./Dropdown/Dropdown";
 import { addNewLocation } from "../Store/reducer";
+import Dropdown from "./Dropdown";
 import "./LocationDetails.scss";
 
 const countries = [
@@ -14,10 +14,7 @@ const countries = [
         name: "California",
         districts: ["Los Angeles", "San Francisco", "San Diego"],
       },
-      {
-        name: "Texas",
-        districts: ["Houston", "Austin", "Dallas"],
-      },
+      { name: "Texas", districts: ["Houston", "Austin", "Dallas"] },
     ],
   },
   {
@@ -65,19 +62,22 @@ const LocationDetails = () => {
     setDescription(value);
   };
 
-  const onCountryChange = (e) => {
-    setSelectedCountry(e.target.value);
+  const onCountryChange = (event) => {
+    const { value } = event.target;
+    setSelectedCountry(value);
     setSelectedState("");
     setSelectedDistrict("");
   };
 
-  const onStateChange = (e) => {
-    setSelectedState(e.target.value);
+  const onStateChange = (event) => {
+    const { value } = event.target;
+    setSelectedState(value);
     setSelectedDistrict("");
   };
 
-  const onDistrictChange = (e) => {
-    setSelectedDistrict(e.target.value);
+  const onDistrictChange = (event) => {
+    const { value } = event.target;
+    setSelectedDistrict(value);
   };
 
   const filteredStates = countries.find(
@@ -153,40 +153,22 @@ const LocationDetails = () => {
           value={selectedCountry}
           onChange={onCountryChange}
         />
-        {selectedCountry ? (
-          <Dropdown
-            label="State"
-            options={filteredStates.map((state) => state.name)}
-            value={selectedState}
-            onChange={onStateChange}
-          />
-        ) : (
-          <div className="form-sub-container">
-            <label className="select-label" htmlFor="state">
-              State:
-            </label>
-            <select className="select-ele" id="state" disabled>
-              <option>State</option>
-            </select>
-          </div>
-        )}
-        {selectedState ? (
-          <Dropdown
-            label="District"
-            options={filteredDistricts}
-            value={selectedDistrict}
-            onChange={onDistrictChange}
-          />
-        ) : (
-          <div className="form-sub-container">
-            <label className="select-label" htmlFor="district">
-              District:
-            </label>
-            <select className="select-ele" id="district" disabled>
-              <option>District</option>
-            </select>
-          </div>
-        )}
+        <Dropdown
+          label="State"
+          options={
+            filteredStates ? filteredStates.map((state) => state.name) : null
+          }
+          value={selectedState}
+          onChange={onStateChange}
+          selectedCountryAndState={selectedCountry}
+        />
+        <Dropdown
+          label="District"
+          options={filteredDistricts}
+          value={selectedDistrict}
+          onChange={onDistrictChange}
+          selectedCountryAndState={selectedState}
+        />
         <button
           className="btn btn-primary mt-3"
           type="submit"
